@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -106,28 +107,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="jslib\jquery-3.2.1.min.js" />
-    <Content Include="jslib\TangDR_Help.js" />
+    <Content Include="mysql\generateMysql.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>generateMysql.cs</LastGenOutput>
+    </Content>
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T4\generateAllEntity.tt">
+    <Content Include="PublicDll\MySql.Data.dll" />
+    <Content Include="sql server\T4\generateAllEntity.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>generateAllEntity.cs</LastGenOutput>
     </Content>
-    <Content Include="T4\generateSingleEntityByName.tt">
+    <Content Include="sql server\T4\generateSingleEntityByName.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>generateSingleEntityByName.cs</LastGenOutput>
     </Content>
-    <Content Include="T4\generateSomeEntityByNameList.tt">
+    <Content Include="sql server\T4\generateSomeEntityByNameList.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>generateSomeEntityByNameList.cs</LastGenOutput>
     </Content>
-    <Content Include="T4\include\DbHelper.ttinclude" />
-    <Content Include="T4\include\MultipleOutputHelper.ttinclude" />
+    <Content Include="sql server\T4\include\DbHelper.ttinclude" />
+    <Content Include="sql server\T4\include\MultipleOutputHelper.ttinclude" />
+    <Content Include="mysql\include\MultipleOutputHelper.ttinclude" />
+    <Content Include="mysql\include\EntityHelper.ttinclude" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -139,27 +139,144 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="mysql\app_version.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\bank_bin.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\bill_wangshang.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\generateMysql.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\isv_rate.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\p_bank.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\p_bank_parent.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\p_city_std.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\p_city_swiftpass.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\p_city_ws.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\p_county_std.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\p_county_swiftpass.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\p_county_ws.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\p_mcc.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\p_mcc_ali_1.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\p_mcc_ali_2.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\p_mcc_ali_3.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\p_mcc_fft.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\p_mcc_swiftpass.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\p_mcc_ws.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\p_mcc_wx_1.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\p_mcc_wx_2.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\p_mcc_wx_3.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\p_province_std.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\p_province_swiftpass.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\p_province_ws.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\ser_merchant_coupon.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\sys_agent.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\sys_bd.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\sys_channel.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\sys_inst.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\sys_merchant.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\sys_merchant_channel.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\sys_merchant_shop.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\sys_merchant_uploadfile.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\sys_module.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\sys_roleauthorize.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\sys_roles.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\sys_terminal.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\sys_users.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\sys_users_copy1.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\sys_users_log.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mysql\t_trade_order.cs">
+      <DependentUpon>generateMysql.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Server\HomeServer.cs" />
-    <Compile Include="Server\Student.cs" />
-    <Compile Include="T4\generateAllEntity.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>generateAllEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="T4\generateSingleEntityByName.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>generateSingleEntityByName.tt</DependentUpon>
-    </Compile>
-    <Compile Include="T4\generateSomeEntityByNameList.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>generateSomeEntityByNameList.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Modals\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
